@@ -7,7 +7,7 @@ complex_number = complex(3, 5)
 string_data = "This is a String"
 list_data = [1, 2, 3, 4, 5]
 tuples_data = ('dan', 'niel', 'agus', 'tin')
-set_data = {'compute', 'mouse', 'keyboard'}
+set_data = {'computer', 'mouse', 'keyboard'}
 frozen_set_data = frozenset(set_data)
 dict_data = {
     'Name': 'Daniel',
@@ -72,12 +72,18 @@ print('Split String:')
 split_string1 = string1.split()
 print(split_string1)
 
-print('Add and Remove Items in List:')
+print('Add and Remove Items in List and Set:')
 list_data = [6, 5, 4, 3, 2, 1]
 list_data.append(0)
-print('add item: ',list_data)
+print('add item to list: ',list_data)
 list_data.remove(6)
-print('remove item: ', list_data)
+print('remove item from list: ', list_data)
+
+set_data = {'computer', 'mouse', 'keyboard'}
+set_data.add('monitor')
+print('add item to set: ', set_data)
+set_data.remove('computer')
+print('remove item from set: ', set_data)
 
 print('Access Values from a dictionary:')
 dict_data = {
