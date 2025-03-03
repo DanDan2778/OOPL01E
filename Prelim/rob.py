@@ -1,19 +1,26 @@
 class Book:
-    def __init__(self, title, author, isbn):
-        self.title = title
+    def __init__(self, _title, author, isbn):
+        self.title = _title
         self.author = author
         self.isbn = isbn
-        self.status = "Available"
+        self.status = True
 
+    def Status(self):
+        if self.status == 1:
+            return "Available"
+        else:
+            return "Not available"
     def borrow_book(self):
-        if self.status == "Available":
-            self.status = "Borrowed"
+        if self.status == 1:
+            self.status = 0
+            return "Book has been borrowed"
         else:
             print("Book is not available for borrowing")
 
     def return_book(self):
-        if self.status == "Borrowed":
-            self.status = "Available"
+        if self.status == 0:
+            self.status = 1
+            return "Book has been returned"
         else:
             print("Book is not borrowed")
 
@@ -22,21 +29,21 @@ class Library:
 
         self.books = []
     def add_book(self):
-        title = input("Enter the title of the book: ")
+        t = input("Enter the title of the book: ")
         author = input("Enter the author of the book: ")
         isbn = input("Enter the ISBN of the book: ")
-        self.books.append(Book(title, author, isbn))
+        self.books.append(Book(t, author, isbn))
 
     def display_books(self):
-        for book in self.books:
-            print(f"Title: {book.title}, Author: {book.author}, ISBN: {book.isbn}, Status: {book.status}")
+        for b in self.books:
+            print(f"Title: {b.title}, Author: {b.author}, ISBN: {b.isbn}, Status: {b.status}")
 
 
     def search_book(self):
-        title = input("Enter the title of the book: ")
-        for book in self.books:
-            if book.title == title:
-                print(f"Title: {book.title}, Author: {book.author}, ISBN: {book.isbn}, Status: {book.status}")
+        t = input("Enter the title of the book: ")
+        for b in self.books:
+            if b.title == t:
+                print(f"Title: {b.title}, Author: {b.author}, ISBN: {b.isbn}, Status: {Book().status()}")
                 return
         print("Book not found")
 
@@ -67,6 +74,8 @@ while True:
             print("Book not found")
     elif choice == 6:
         break
+    else:
+        print("Invalid choice")
 
 
 
