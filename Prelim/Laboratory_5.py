@@ -34,8 +34,10 @@ class Library:
 
 # Display the list of books
     def display_books(self):
-        print('\n'*50)
-        print(tabulate([[book.title, book.author, book.isbn, "Available" if book.is_available else "Not Available"] for book in self.books], headers=["Title", "Author", "ISBN", "Availability"], tablefmt="fancy_grid"))
+        print(tabulate([[book.title, book.author, book.isbn,
+                        "Available" if book.is_available else "Not Available"] for book in self.books],
+                       headers=["Title", "Author", "ISBN", "Availability"],
+                       tablefmt="fancy_grid"))
 
 # Search for a book in the list of books
     def search_book(self, title):
@@ -61,10 +63,11 @@ library.add_book(Book5)
 
 # Displays a menu for the user to choose from
 while True:
-    print(tabulate([[1, "Display Books"], [2, "Borrow Book"], [3, "Return Book"], [4, "Exit"]], headers=["Menu"], tablefmt="orgtbl"))
+    print(tabulate([[1, "Display Available Books"], [2, "Borrow Book"], [3, "Return Book"], [4, "Exit"]], headers=["Menu"], tablefmt="orgtbl"))
     choice = int(input("Enter choice: "))
 
     if choice == 1:
+        print('\n'*25)
         library.display_books() # Display the list of books
     elif choice == 2: # Borrow a book
         title = input("Enter title: ") # Ask the user to enter the title of the book
@@ -72,11 +75,14 @@ while True:
         print('\n'*50)
         if book and book.is_available: # If the book is found and is available
             book.borrow_book() # Borrow the book and prints that the book is borrowed
-            print(f"{book.title} borrowed")
+            print(f"{book.title} is borrowed")
         elif book and not book.is_available: # If the book is found but is not available
             print(f"{book.title} is not available") # Print that the book is not available
         else: # If the book is not found and tells the user that the book is not in the library
             print("Book not found")
+
+        print('Updated Library:')
+        library.display_books() # Display the updated library
     elif choice == 3: # Return a book
         title = input("Enter title: ")  # Ask the user to enter the title of the book and look for the book in the library
         book = library.search_book(title)
@@ -88,7 +94,10 @@ while True:
             print(f"{book.title} is already returned")
         else: # If the book is not found, print that the book is not found
             print("Book not found")
+        print('Updated Library:')
+        library.display_books() # Display the updated library
     elif choice == 4: # Exit the program
         break
     else: # If the user enters an invalid choice, print that the choice is invalid
         print("Invalid choice")
+

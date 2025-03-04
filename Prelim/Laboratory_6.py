@@ -46,7 +46,9 @@ class ShoppingCart:
 
 # View the list of products
     def view_cart(self):
-        print(tabulate([[product.name, product.price] for product in self.products], headers=["Name", "Price"], tablefmt="fancy_grid"))
+        print(tabulate([[product.name, product.price] for product in self.products],
+                       headers=["Name", "Price"],
+                       tablefmt="fancy_grid"))
 
 # Check out the products in the list
     def check_out(self):
@@ -67,14 +69,26 @@ jeans = Clothing("Jeans", 1500, "28")
 # Menu for the user to choose from
 while True:
 # Create a tabulate menu for the user to choose from
-    print(tabulate([[1, "Add to Cart"], [2, "View Cart"], [3, "Checkout"], [4, "Exit"]], headers=['Menu'], tablefmt="orgtbl"))
+    print(tabulate([[1, "Add to Cart"],
+                    [2, "View Cart"],
+                    [3, "Checkout"],
+                    [4, "Exit"]],
+                   headers=['Menu'],
+                   tablefmt="orgtbl"))
     choice = int(input("Enter choice: "))
     print('\n'*25)
 # Create a tabulate menu for the user to choose from to add in the cart
     if choice == 1:
         # create a tabulate menu for the user to choose from
         while True:
-            print(tabulate([[1, "Shirt", 20], [2, "Phone", 15000], [3, "Laptop", 49000], [4, "Jeans", 1500], [5, "Exit"]], headers=["Choice", "Name", "Price"], tablefmt="fancy_grid"))
+            # display the menu for the user to choose from: product name, warranty/size and price
+            print(tabulate([[1, 'Shirt', 'M', 20],
+                            [2, 'Phone', '2 Years', 15000],
+                            [3, 'Laptop', '3 Years', 49000],
+                            [4, 'Jeans', '28', 1500],
+                            [5, 'Exit']],
+                           headers=['MENU', 'Product Name', 'Warranty/Size', 'Price'],
+                           tablefmt="orgtbl"))
             choice = int(input("Enter choice: "))
             if choice == 1:
                 shopping_cart.add_to_cart(shirt) # Add the shirt to the cart
@@ -93,11 +107,11 @@ while True:
             print("Added to Cart:")
             shopping_cart.view_cart()
             print('Total:', shopping_cart.check_out())
-    elif choice == 2:
+    elif choice == 2: # View the cart
         # Display the cart and the total
         shopping_cart.view_cart()
         print('Total:', shopping_cart.check_out())
-    elif choice == 3:
+    elif choice == 3: # Checkout
         # Display the cart and the total
         shopping_cart.view_cart()
         print(f"Total: {shopping_cart.check_out()}")
